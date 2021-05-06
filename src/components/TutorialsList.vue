@@ -102,12 +102,13 @@ export default {
     },
 
     retrieveTutorials() {
+      console.log("TutorizlVue li:105");
       const params = this.getRequestParams(
         this.searchTitle,
         this.page,
         this.pageSize
       );   
-      TutorialDataService.getAll(params)
+      TutorialDataService.getAll(params)      
         .then((response) => {
           this.tutorials = response.data.tutorials.map(this.getDisplayTutorial);
           this.totalItems = response.data.totalItems;

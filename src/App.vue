@@ -1,3 +1,36 @@
+
+Skip to content
+Pull requests
+Issues
+Marketplace
+Explore
+@yvoste
+yvoste /
+jwt-vue
+
+1
+0
+
+    0
+
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+
+    Settings
+
+jwt-vue/src/App.vue
+@yvoste
+yvoste premier costate before install vuetify
+Latest commit adb0e21 23 minutes ago
+History
+1 contributor
+90 lines (84 sloc) 2.64 KB
 <template>
   <div id="app">
     <nav class="navbar navbar-expand navbar-dark bg-dark">
@@ -23,6 +56,7 @@
         <li class="nav-item">
           <router-link v-if="currentUser || showAdminBoard || showModeratorBoard" to="/add" class="nav-link">Add Tutorial</router-link>
         </li>
+        
       </div>
 
       <div v-if="!currentUser" class="navbar-nav ml-auto">
@@ -69,16 +103,26 @@ export default {
       if (this.currentUser && this.currentUser.roles) {
         return this.currentUser.roles.includes('ROLE_ADMIN');
       }
-
       return false;
     },
     showModeratorBoard() {
       if (this.currentUser && this.currentUser.roles) {
         return this.currentUser.roles.includes('ROLE_MODERATOR');
       }
-
       return false;
     }
+    /*tutorials() {
+      if (this.currentUser && this.currentUser.roles) {
+        return this.currentUser.roles.includes('ROLE_MODERATOR');
+      }
+      return false;
+    }
+    add() {
+      if (this.currentUser && this.currentUser.roles) {
+        return this.currentUser.roles.includes('ROLE_MODERATOR');
+      }
+      return false;
+    }*/
   },
   methods: {
     logOut() {

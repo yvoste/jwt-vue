@@ -51,26 +51,20 @@ export const router = new Router({
       component: () => import('./views/BoardUser.vue')
     },
     {
-      path: "/",
-      alias: "/tutorials",
-      name: "tutorials",
+      path: '/tutorials',
+      name: 'tutorials',
       component: () => import("./components/TutorialsList")
     },
     {
-      path: "/tutorials/:id",
-      name: "tutorial-details",
-      component: () => import("./components/Tutorial")
-    },
-    {
-      path: "/add",
-      name: "add",
+      path: '/add',
+      name: 'add',
       component: () => import("./components/AddTutorial")
     }
   ]
 });
 
 router.beforeEach((to, from, next) => {
-    const publicPages = ['/login', '/register', '/home'];
+    const publicPages = ['/login', '/register', '/home', '/tutorialsList'];
     const authRequired = !publicPages.includes(to.path);
     const loggedIn = localStorage.getItem('user');
   
