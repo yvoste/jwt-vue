@@ -86,15 +86,24 @@ export default {
         if (this.user.username && this.user.password) {
           this.$store.dispatch('auth/login', this.user).then(
             () => {
-              /*var authorities = [];
-              this.user.getRoles().then(roles => {
-              for (let i = 0; i < roles.length; i++) {
-                authorities.push("ROLE_" + roles[i].name.toUpperCase());
+              // retrieve localstorage key with id, username, email, roles, accessToken
+              const dataLocalStorage = localStorage.getItem('user');
+              var obj = JSON.parse(dataLocalStorage);
+              console.log(obj.roles[0]); // roles
+              switch (obj.roles[0]) {
+                case 'ROLE_ADMIN':
+                  this.$router.push('/admin');
+                  break;
+                case 'ROLE_MODERATOR':
+                  this.$router.push('/mod');
+                  break;
+                case 'ROLE-USER':
+                  this.$router.push('/user');
+                  break;
+                default:
+                  this.$router.push('/home');
+                  break;
               }
-              });
-              console.log(authorities)         
-              console.log(this.user.username);*/
-              this.$router.push('/profile');
             },
             error => {
               this.loading = false;

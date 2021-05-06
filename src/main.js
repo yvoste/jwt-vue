@@ -14,16 +14,20 @@ import {
   faSignInAlt,
   faSignOutAlt
 } from '@fortawesome/free-solid-svg-icons';
+import vuetify from './plugins/vuetify'
 
 library.add(faHome, faUser, faUserPlus, faSignInAlt, faSignOutAlt);
 
 Vue.config.productionTip = false;
 
 Vue.use(VeeValidate);
+Vue.use(BootstrapVue);
+
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 new Vue({
   router,
+  vuetify,
   store,
   render: h => h(App)
 }).$mount('#app');
