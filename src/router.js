@@ -56,10 +56,20 @@ export const router = new Router({
       component: () => import("./components/TutorialsList")
     },
     {
+      path: "/tutorials/:id",
+      name: "tutorial-details",
+      component: () => import("./components/Tutorial")
+    },
+    {
       path: '/add',
       name: 'add',
       component: () => import("./components/AddTutorial")
-    }
+    },
+    /*{
+      path: '/comment',
+      name: 'comment-create',
+      component: () => import("./components/CreateComment")
+    }*/
   ]
 });
 

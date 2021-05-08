@@ -1,44 +1,46 @@
 <template>
-  <div class="submit-form mt-3 mx-auto">
-    <p class="headline">Add Tutorial</p>
+  <v-app>
+    <div class="submit-form mt-3 mx-auto">
+      <p class="headline">Add Tutorial</p>
 
-    <div v-if="!submitted">
-      <v-form ref="form" lazy-validation>
-        <v-text-field
-          v-model="tutorial.title"
-          :rules="[(v) => !!v || 'Title is required']"
-          label="Title"
-          required
-        ></v-text-field>
+      <div v-if="!submitted">
+        <v-form ref="form" lazy-validation>
+          <v-text-field
+            v-model="tutorial.title"
+            :rules="[(v) => !!v || 'Title is required']"
+            label="Title"
+            required
+          ></v-text-field>
 
-        <v-textarea
-          v-model="tutorial.description"
-          :rules="[(v) => !!v || 'Description is required']"
-          label="Description"
-          required
-          counter=520
-        ></v-textarea>
-      </v-form>
+          <v-textarea
+            v-model="tutorial.description"
+            :rules="[(v) => !!v || 'Description is required']"
+            label="Description"
+            required
+            counter=520
+          ></v-textarea>
+        </v-form>
 
-      <v-btn color="primary" class="mt-3" @click="saveTutorial">Submit</v-btn>
+        <v-btn color="primary" class="mt-3" @click="saveTutorial">Submit</v-btn>
+      </div>
+
+      <div v-else>
+        <v-card class="mx-auto">
+          <v-card-title>
+            Submitted successfully!
+          </v-card-title>
+
+          <v-card-subtitle>
+            Click the button to add new Tutorial.
+          </v-card-subtitle>
+
+          <v-card-actions>
+            <v-btn color="success" @click="newTutorial">Add</v-btn>
+          </v-card-actions>
+        </v-card>
+      </div>
     </div>
-
-    <div v-else>
-      <v-card class="mx-auto">
-        <v-card-title>
-          Submitted successfully!
-        </v-card-title>
-
-        <v-card-subtitle>
-          Click the button to add new Tutorial.
-        </v-card-subtitle>
-
-        <v-card-actions>
-          <v-btn color="success" @click="newTutorial">Add</v-btn>
-        </v-card-actions>
-      </v-card>
-    </div>
-  </div>
+  </v-app>
 </template>
 
 <script>

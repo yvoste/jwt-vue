@@ -1,71 +1,73 @@
 <template>
-  <div v-if="currentTutorial" class="edit-form py-3">
-    <p class="headline">Edit Tutorial</p>
+  <v-app>
+    <div v-if="currentTutorial" class="edit-form py-3">
+      <p class="headline">Edit Tutorial</p>
 
-    <v-form ref="form" lazy-validation>
-      <v-text-field
-        v-model="currentTutorial.title"
-        :rules="[(v) => !!v || 'Title is required']"
-        label="Title"
-        required
-      ></v-text-field>
+      <v-form ref="form" lazy-validation>
+        <v-text-field
+          v-model="currentTutorial.title"
+          :rules="[(v) => !!v || 'Title is required']"
+          label="Title"
+          required
+        ></v-text-field>
 
-      <v-textarea
-        v-model="currentTutorial.description"
-        :rules="[(v) => !!v || 'Description is required']"
-        label="Description"
-        required
-        counter=520
-      ></v-textarea>
+        <v-textarea
+          v-model="currentTutorial.description"
+          :rules="[(v) => !!v || 'Description is required']"
+          label="Description"
+          required
+          counter=520
+        ></v-textarea>
 
-      <label><strong>Status:</strong></label>
-      {{ currentTutorial.published ? "Published" : "Pending" }}
-      <br>
-      <label><strong>Comments:</strong>
-      <span  class="maclass" @click="getComment(currentTutorial.id)">
-        {{ currentTutorial.comments.length }}
-        </span>
-        </label>
+        <label><strong>Status:</strong></label>
+        {{ currentTutorial.published ? "Published" : "Pending" }}
+        <br>
+        <label><strong>Comments:</strong>
+        <span  class="maclass" @click="getComment(currentTutorial.id)">
+          {{ currentTutorial.comments.length }}
+          </span>
+          </label>
 
-      <v-divider class="my-5"></v-divider>
+        <v-divider class="my-5"></v-divider>
 
-      <v-btn v-if="currentTutorial.published"
-        @click="updatePublished(false)"
-        color="primary" small class="mr-2"
-      >
-        UnPublish
-      </v-btn>
+        <v-btn v-if="currentTutorial.published"
+          @click="updatePublished(false)"
+          color="primary" small class="mr-2"
+        >
+          UnPublish
+        </v-btn>
 
-      <v-btn v-else
-        @click="updatePublished(true)"
-        color="primary" small class="mr-2"
-      >
-        Publish
-      </v-btn>
+        <v-btn v-else
+          @click="updatePublished(true)"
+          color="primary" small class="mr-2"
+        >
+          Publish
+        </v-btn>
 
-      <v-btn color="error" small class="mr-2" @click="deleteTutorial">
-        Delete
-      </v-btn>
+        <v-btn color="error" small class="mr-2" @click="deleteTutorial">
+          Delete
+        </v-btn>
 
-      <v-btn color="success" small @click="updateTutorial">
-        Update
-      </v-btn>
-    </v-form>
-      <div v-if="currentComments">
-        <h4>Comments</h4>
-        <div v-for="(currentComment, index) in currentComments"
-          :key="index"
-          >
-          <label><strong>Name:</strong>{{ currentComment.name }}</label> <br>
-          <label><strong>Text:</strong>{{ currentComment.text }}</label> 
+        <v-btn color="success" small @click="updateTutorial">
+          Update
+        </v-btn>
+      </v-form>
+        <div v-if="currentComments">
+          <h4>Comments</h4>
+          <div v-for="(currentComment, index) in currentComments"
+            :key="index"
+            >
+            <label><strong>Name:</strong>{{ currentComment.name }}</label> <br>
+            <label><strong>Text:</strong>{{ currentComment.text }}</label> 
+          </div>
         </div>
-      </div>
-    <p class="mt-3">{{ message }}</p>
-  </div>
+      <p class="mt-3">{{ message }}</p>
+    </div>
 
-  <div v-else>
-    <p>Please click on a Tutorial...</p>
-  </div>
+    <div v-else>
+      <p>Please click on a Tutorial...</p>
+    </div>
+  </v-app>
 </template>
 
 <script>
